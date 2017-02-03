@@ -1,0 +1,151 @@
+    <div class="animated fadeIn" ng-controller="AddController">
+
+    <div class="card">
+        <div class="card-header">
+            <strong>Enter Your Details</strong>
+        </div>
+        <div class="card-block">
+            <form action="" method="get" enctype="multipart/form-data" ng-controller="Dropdownctrl" class="form-horizontal ">
+
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="text-input">Full Name</label>
+                    <div class="col-md-9">
+                        <input type="text" id="text-input" ng-model='reg.name' name="text-input" class="form-control" placeholder="Full Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="email-input">Email ID</label>
+                    <div class="col-md-9">
+                        <input type="email" id="email-input" name="email-input" ng-model='reg.email' class="form-control" placeholder="Enter Email">
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="password-input">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" id="password-input" name="password-input" ng-model="reg.passsword" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="state">State</label>
+                    <div class="col-md-9">
+                        <select id="state" ng-options="obj.Id as obj.state for obj in states" ng-change="getcities()" name="select" ng-model='reg.state' class="form-control" >
+
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="city">City</label>
+                    <div class="col-md-9">
+                        <select id="city" name="select" ng-model='reg.city' ng-options="x.Id as x.city for x in cities" class="form-control" size="1">
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">Gender</label>
+                    <div class="col-md-9">
+                        <div class="radio">
+                            <label for="radio1">
+                                <input type="radio" id="radio1" ng-model='reg.gender' name="radios" value="Male">Male
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="radio2">
+                                <input type="radio" id="radio2" ng-model='reg.gender' name="radios" value="Female">Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label">Status</label>
+                    <div class="col-md-9">
+
+                        <label class="switch switch-default switch-pill switch-primary">
+                            <input type="checkbox" class="switch-input" label="Active" ng-model='reg.status'>
+                            <span class="switch-label"></span>
+                            <span class="switch-handle"></span>
+                        </label> Active
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="file-input">Image</label>
+                    <div class="col-md-9">
+                        <input type="file" id="file-input" ng-model='reg.image' name="image">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary" ng-click="registration(reg)"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+        </div>
+    </div>
+    <div class="container custom_background" ui-view>
+    </div>
+
+    <div class="row" ng-controller="GetController">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> All Users
+                </div>
+                <div class="card-block">
+                    <table class="table table-bordered table-striped table-condensed" ng-controller="dialogController">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Gender</th>
+                            <th>Status</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  class="animate" ng-repeat="users in record ">
+
+                            <td>{{users.name}}</td>
+                            <td>{{users.email}}</td>
+                            <td>{{users.state}}</td>
+                            <td>{{users.city}}</td>
+                            <td>{{users.gender}}</td>
+                            <td>
+                                <label ng-if="users.status=='true'" class="switch switch-default switch-pill switch-primary">
+                                    <input type="checkbox" class="switch-input" label="Active" checked disabled>
+                                    <span class="switch-label"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
+                                <label ng-if="users.status!='true'" class="switch switch-default switch-pill switch-primary">
+                                    <input type="checkbox" class="switch-input" disabled>
+                                    <span class="switch-label"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
+                            </td>
+                            <td>
+                                <input class="btn btn-primary"  type="button" ng-click="saves(users)" value="edit" />
+                            </td>
+                            <td>
+                                <input class="btn btn-danger" type="button" ui-sref="deleteuser(users)" value="Delete" />
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/col-->
+    </div>
+
+</div>
+
+<div ng-controller="toastrWelcome"></div>
