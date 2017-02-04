@@ -5,7 +5,7 @@
             <strong>Enter Your Details</strong>
         </div>
         <div class="card-block">
-            <form action="" method="get" enctype="multipart/form-data" ng-controller="Dropdownctrl" class="form-horizontal ">
+            <form action="" method="get" name="form" ng-controller="Dropdownctrl" class="form-horizontal ">
 
                 <div class="form-group row">
                     <label class="col-md-3 form-control-label" for="text-input">Full Name</label>
@@ -76,7 +76,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 form-control-label" for="file-input">Image</label>
                     <div class="col-md-9">
-                        <input type="file" id="file-input" ng-model='reg.image' name="image">
+                        <input type="file" id="file-input" ngf-select ng-model='reg.image' name="image">
                     </div>
                 </div>
 
@@ -84,7 +84,7 @@
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-sm btn-primary" ng-click="registration(reg)"><i class="fa fa-dot-circle-o"></i> Submit</button>
-            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
         </div>
     </div>
     <div class="container custom_background" ui-view>
@@ -131,10 +131,10 @@
                                 </label>
                             </td>
                             <td>
-                                <input class="btn btn-primary"  type="button" ng-click="saves(users)" value="edit" />
+                                <input class="btn btn-primary"  type="button" ng-click="update(users)" value="Edit" />
                             </td>
                             <td>
-                                <input class="btn btn-danger" type="button" ui-sref="deleteuser(users)" value="Delete" />
+                                <input class="btn btn-danger" type="button" ng-click="deletee(users)" value="Delete" />
                             </td>
                         </tr>
 

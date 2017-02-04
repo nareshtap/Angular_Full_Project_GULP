@@ -15,6 +15,7 @@ angular
     .module('app', [
         'ui.router',
         'ui.bootstrap',
+        'ngFileUpload',
         'ui.router.modal',
         'oc.lazyLoad',
         'pascalprecht.translate',
@@ -43,24 +44,53 @@ angular
         $scope.reg.state= parseInt($rootScope.userDetails.state);
 
         $scope.getstatecity=function(){
-                Dropservice.getcity($rootScope.userDetails.state,function(response){
+                Dropservice.getcity($scope.reg.state,function(response){
                     debugger
                     $scope.city=response.data;
                 });
         }
         $scope.getstatecity();
+        $scope.reg.city=[];
         $scope.reg.city= parseInt($rootScope.userDetails.city);
 
 
         $scope.updateuser=function(reg) {
-
         UpdateService.updatereg(reg).then(function (resolve) {
         });
         $uibModalInstance.close(reg);
-
     }
+        $scope.cancel=function(){
+            $uibModalInstance.dismiss('cancel');
+        };
 
-}).factory('UpdateService',function($http,$q) {
+}).controller('DeleteInstance', function($scope,$rootScope,$uibModalInstance,DeleteService,users) {
+
+    $scope.reg=users? angular.copy(users):{} ;
+    //$scope.reg=$rootScope.userDetails;
+    $scope.deleteuser=function(reg) {
+
+        DeleteService.deletereg(reg).then(function (resolve) {
+        });
+        $uibModalInstance.close(reg);
+    }
+    $scope.cancel=function(){
+        $uibModalInstance.dismiss('cancel');
+    };
+
+}) .factory('DeleteService',function($http,$q) {
+    return {
+        deletereg: function (registers) {
+            var deferred = $q.defer();
+            return $http.delete('http://localhost:8000/register/'+registers._id, {
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                }
+
+            })
+        }
+    }
+})
+    .factory('UpdateService',function($http,$q) {
     return {
         updatereg: function (registers) {
             var deferred = $q.defer();
