@@ -1,0 +1,57 @@
+<div ng-controller="UpdateController">
+<div class="card-block" >
+    <form action="" method="get" enctype="multipart/form-data" ng-controller="Dropdownctrl" class="form-horizontal ">
+
+        <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input">Full Name</label>
+            <div class="col-md-9">
+                <input type="text" id="text-input" ng-model='reg.name' name="text-input" class="form-control" placeholder="Text">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="email-input">Email ID</label>
+            <div class="col-md-9">
+                <input type="email" id="email-input" name="email-input" ng-model='reg.email' class="form-control" readonly>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="state">State</label>
+            <div class="col-md-9">
+                <select ng-options="obj.Id as obj.state for obj in states" ng-change="getcities()" id="state" ng-model='reg.state' class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="city">City</label>
+            <div class="col-md-9">
+                <select id="city" name="select" ng-model='reg.city' ng-options="x.Id as x.city for x in city" class="form-control" size="1">
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-3 form-control-label">Gender</label>
+            <div class="col-md-9">
+                <div class="radio">
+                    <label for="radio1">
+                        <input type="radio" id="radio1" ng-model='reg.gender' name="radios" value="Male">Male
+                    </label>
+                </div>
+                <div class="radio">
+                    <label for="radio2">
+                        <input type="radio" id="radio2" ng-model='reg.gender' name="radios" value="Female">Female
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="card-footer">
+    <button type="submit" class="btn btn-sm btn-primary" ng-click="updateuser(reg)"><i class="fa fa-edit"></i> Update</button>
+
+</div>
+</div>
