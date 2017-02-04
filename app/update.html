@@ -19,7 +19,7 @@
         <div class="form-group row">
             <label class="col-md-3 form-control-label" for="state">State</label>
             <div class="col-md-9">
-                <select ng-options="obj.Id as obj.state for obj in states" ng-change="getcities()" id="state" ng-model='reg.state' class="form-control">
+                <select ng-options="obj.Id as obj.state for obj in states" ng-change="getstatecity()" id="state" ng-model='reg.state' class="form-control">
                 </select>
             </div>
         </div>
@@ -52,6 +52,7 @@
 </div>
 <div class="card-footer">
     <button type="submit" class="btn btn-sm btn-primary" ng-click="updateuser(reg)"><i class="fa fa-edit"></i> Update</button>
+        <button type="submit" class="btn btn-sm btn-danger" ng-click="cancel()"><i class="fa fa-ban"></i> Cancel</button>
 
-</div>
+    </div>
 </div>
